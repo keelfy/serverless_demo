@@ -1,8 +1,6 @@
 exports.handler = async (event) => {
     const path = event.requestContext.http.path;
     const method = event.requestContext.http.method;
-
-    console.log(JSON.stringify(event, null, 2));
     
     let response = {
         statusCode: 400,
@@ -16,5 +14,8 @@ exports.handler = async (event) => {
         };
     }
 
-    return response;
+    return {
+        statusCode: response.statusCode,
+        body: JSON.stringify(response),
+    }
 };
